@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         // Find the View that shows the numbers category
         TextView numbers = (TextView) findViewById(R.id.numbers);
 
@@ -86,6 +84,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+/*      ReportCard Test
+
+        ReportCard card = new ReportCard("Physics", 80, 2017);
+        card.addNewSubjectAndGrade("Chemistry", 70);
+        card.addNewSubjectAndGrade("Bio", 60);
+        String report = card.toString();
+        display(report);
+
     }
+
+    private void display(String text) {
+        TextView quantityTextView = (TextView) findViewById(R.id.report);
+        quantityTextView.setText("" + text);
+    }*/
 
 }
