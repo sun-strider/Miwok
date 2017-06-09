@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
+    // varaible to store the background color information passed into the constructor
+    private int mColorResourceId;
 
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
@@ -26,13 +28,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
      *
      * @param context         The current context. Used to inflate the layout file.
      * @param Word            A List of Word objects to display in a list
+     * @param colorResourceId           The background colorResourceId of the Activity which creates the WordAdapter
      */
-    public WordAdapter(Activity context, ArrayList<Word> Word) {
+    public WordAdapter(Activity context, ArrayList<Word> Word, int colorResourceId) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, Word);
+        // Set the mColorResourceId variable to the colorResourceId passed in by the constructor
+        mColorResourceId = colorResourceId;
     }
 
 
@@ -73,6 +78,12 @@ public class WordAdapter extends ArrayAdapter<Word> {
             // Otherwise hide the ImageView (set visibility to GONE)
             imageView.setVisibility(View.GONE);
         }
+
+        // Find the View which contains the TextViews
+        View textContainer = listItemView.findViewById(R.id.text_container);
+        // Set the background color of the text container View
+        textContainer.setBackgroundResource(mColorResourceId);
+
         // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
         // the ListView.
         return listItemView;
