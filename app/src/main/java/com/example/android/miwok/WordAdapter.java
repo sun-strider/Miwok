@@ -56,17 +56,23 @@ public class WordAdapter extends ArrayAdapter<Word> {
         miwokTextView.setText(currentWordObject.getMiwokTranslation());
 
         // Find the TextView in the list_item.xml layout with the ID default_text_view
-        TextView numberTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
+        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         // Get the default translation from the currentWord object and set this text on
         // the default TextView.
-        numberTextView.setText(currentWordObject.getDefaultTranslation());
+        defaultTextView.setText(currentWordObject.getDefaultTranslation());
 
         // Find the ImageView in the list_item.xml layout with the ID image
-        ImageView wordImageView = (ImageView) listItemView.findViewById(R.id.image);
-        // Get the image ID from the currentWord object and set this text on
-        // the ImageView
-        wordImageView.setImageResource(currentWordObject.getmImageResourceID());
-
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+        // Check if an image is provided for this word or not
+        if (currentWordObject.hasImage()) {
+            // If an image is available, display the provided image based on the resource ID
+            imageView.setImageResource(currentWordObject.getImageResourceId());
+            // Make sure the view is visible
+            imageView.setVisibility(View.VISIBLE);
+        } else {
+            // Otherwise hide the ImageView (set visibility to GONE)
+            imageView.setVisibility(View.GONE);
+        }
         // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
         // the ListView.
         return listItemView;
