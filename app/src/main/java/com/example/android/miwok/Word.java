@@ -6,7 +6,7 @@ package com.example.android.miwok;
 
 /**
  * {@link Word} represents a vocabulary word that the user wants to learn.
- * It contains a default translation and a Miwok translation for that word.
+ * It contains a default translation, a Miwok translation, and an image for that word.
  */
 public class Word {
 
@@ -14,29 +14,24 @@ public class Word {
      * Constant value that represents no image was provided for this word
      */
     private static final int NO_IMAGE_PROVIDED = -1;
-    /**
-     * Default translation for the word
-     */
+    /** Default translation for the word */
     private String mDefaultTranslation;
-    /**
-     * Miwok translation for the word
-     */
+    /** Miwok translation for the word */
     private String mMiwokTranslation;
+    /** Audio resource ID for the word */
+    private int mAudioResourceId;
     /**
-     * Image resource ID of the image for the word
+     * Image resource ID for the word
      */
     private int mImageResourceId = NO_IMAGE_PROVIDED;
-    /**
-     * Resource ID of the audio file for the word
-     */
-    private int mAudioResourceId;
 
     /**
      * Create a new Word object.
      *
      * @param defaultTranslation is the word in a language that the user is already familiar with
      *                           (such as English)
-     * @param miwokTranslation   is the word in the Miwok language
+     * @param miwokTranslation is the word in the Miwok language
+     * @param audioResourceId is the resource ID for the audio file associated with this word
      */
     public Word(String defaultTranslation, String miwokTranslation, int audioResourceId) {
         mDefaultTranslation = defaultTranslation;
@@ -45,14 +40,16 @@ public class Word {
     }
 
     /**
-     * Create a new Word object with additional image ID
+     * Create a new Word object.
      *
      * @param defaultTranslation is the word in a language that the user is already familiar with
      *                           (such as English)
-     * @param miwokTranslation   is the word in the Miwok language
-     * @param imageResourceId    is the drawable rousource ID of the image for the word
+     * @param miwokTranslation is the word in the Miwok language
+     * @param imageResourceId is the drawable resource ID for the image associated with the word
+     * @param audioResourceId is the resource ID for the audio file associated with this word
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int audioResourceId) {
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId,
+                int audioResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
@@ -60,21 +57,21 @@ public class Word {
     }
 
     /**
-     * Return the default translation of the word.
+     * Get the default translation of the word.
      */
     public String getDefaultTranslation() {
         return mDefaultTranslation;
     }
 
     /**
-     * Return the Miwok translation of the word.
+     * Get the Miwok translation of the word.
      */
     public String getMiwokTranslation() {
         return mMiwokTranslation;
     }
 
     /**
-     * Return the image resource ID for the word
+     * Return the image resource ID of the word.
      */
     public int getImageResourceId() {
         return mImageResourceId;
@@ -88,10 +85,9 @@ public class Word {
     }
 
     /**
-     * Return the audio resource ID for the word
+     * Return the audio resource ID of the word.
      */
     public int getAudioResourceId() {
         return mAudioResourceId;
     }
-
 }
